@@ -1,13 +1,22 @@
-//your code here
-let bandNames = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
+let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
+touristSpots.sort((a, b) => {
+    const articles = /^(The|A|An)\s+/i; 
 
-let modifiednames = bandNames.map(names => .replace(/^(a|an|the)\s/i"))
+    const spotA = a.replace(articles, '');
+    const spotB = b.replace(articles, '');
+  
+    return spotA.localeCompare(spotB);
+  });
+console.log(touristSpots);
+  
+ const ulElement = document.getElementById('band');
 
-modifiednames.sort();
-let ul = document.createElement('ul');
-ul.setAttribute('id', 'band');
-modifiednames.forEach(name => {
-	let li = document.createElement('li');
-	li.textContent = name;
-	ul.appendChild(li);
-})
+
+ulElement.innerHTML = '';
+
+
+touristSpots.forEach((spot) => {
+  const liElement = document.createElement('li');
+  liElement.textContent = spot;
+  ulElement.appendChild(liElement);
+});
